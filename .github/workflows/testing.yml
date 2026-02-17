@@ -1,36 +1,36 @@
-# This is a basic workflow to help you get started with Actions
+#name of the workflow
+name: Testing
 
-name: CI
-
-# Controls when the workflow will run
+#when to run the workflow
 on:
-  # Triggers the workflow on push or pull request events but only for the "master" branch
+  #run the workflow on push to the main branch
   push:
-    branches: [ "master" ]
+    branches: [main]
+  #run the workflow on pull request to the main branch
   pull_request:
-    branches: [ "master" ]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+    branches: [main]
+#jobs to run
 jobs:
-  # This workflow contains a single job called "build"
+  #name of the job
   build:
-    # The type of runner that the job will run on
+    #the type of machine to run the job on
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    #steps to run in the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      #step 1: check out the code from the repository
       - uses: actions/checkout@v4
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+      #step 2: set up Node.js environment
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+      #step 3: install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      #step 4: run tests
+      - name: Run tests
+        run: npm test
