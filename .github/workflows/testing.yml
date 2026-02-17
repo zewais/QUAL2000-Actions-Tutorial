@@ -5,10 +5,10 @@ name: Testing
 on:
   #run the workflow on push to the main branch
   push:
-    branches: [main]
+    branches: [master]
   #run the workflow on pull request to the main branch
   pull_request:
-    branches: [main]
+    branches: [master]
 #jobs to run
 jobs:
   #name of the job
